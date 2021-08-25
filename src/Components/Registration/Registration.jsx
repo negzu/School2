@@ -14,7 +14,6 @@ function Registration() {
     const [flag, setFlag] = useState(false);
     const [login, setLogin] = useState(true);
     const [info, setInfo] = useState(true);
-    
 
 
 
@@ -30,8 +29,9 @@ function Registration() {
             setFlag(false);
             localStorage.setItem("Email", JSON.stringify(email));
             localStorage.setItem("Password", JSON.stringify(password));
-            localStorage.setItem("phone", JSON.stringify(phone));
-            localStorage.setItem("profession", JSON.stringify(profession));
+            localStorage.setItem("Name", JSON.stringify(name));
+            localStorage.setItem("Phone", JSON.stringify(phone));
+            localStorage.setItem("Profession", JSON.stringify(profession));
             console.log("Saved in Local Storage");
 
             setLogin(!login)
@@ -44,14 +44,23 @@ function Registration() {
     function handleClick() {
         setLogin(!login)
     }
+
+    // School info
     function infoClick() {
         setInfo(!info)
     }
-   
+
+
 
     return (
-        <>     <form onSubmit={handleFormSubmit}>
-                <h3>Admin Registration</h3>
+        <>
+            <nav className="navbar navbar-light">
+                <div className="container" onClick={infoClick}>
+                    <h4 className="btn btn-warning btn-lg btn-block">CPGHS</h4>
+                </div>
+            </nav>
+            {info ? <div> {login ? <form onSubmit={handleFormSubmit}>
+                <h3>Admin Register</h3>
 
                 <div className="form-group">
                     <label>Name</label>
@@ -70,32 +79,36 @@ function Registration() {
 
 
                 <div className="form-group">
-                    <label>Phone No.</label>
-                    <input type="Phone" className="form-control" placeholder=" 09xxxxxxxxx" onChange={(event) => setPhone(event.target.value)} />
+                    <label>Contact No.</label>
+                    <input type="Phone" className="form-control" placeholder="09xxxxxxxxx" onChange={(event) => setPhone(event.target.value)} />
                 </div>
 
                 <div className="form-group">
-                    <label>School Position</label>
+                    <label>Professor</label>
                     <Form.Control as="select" onChange={(event) => setProfession(event.target.value)} >
-                        <option>Teacher</option>
+                        <option>Professor</option>
                         <option>Admin</option>
                         <option>Staff</option>
+                      
                     </Form.Control>
                 </div>
 
-                   <br></br>
+
                 <button type="submit" className="btn btn-warning btn-lg btn-block">Register</button>
                 <p className="forgot-password text-right">
                     Already registered <a href="#" onClick={handleClick} >log in?</a>
                 </p>
                 {flag &&
                     <Alert color='primary' variant="danger" >
-                         Every Field is important!
+                        I got it you are in hurry! But every Field is important!
                 </Alert>
                 }
 
-            </form> : <Login />
-           
+            </form> : <Login />}
+            </div> : <div>
+                    <p><strong>School:</strong> Carlos P. Garcia Senior High School</p>
+                    <p><strong>Address:</strong> Pandacan manila </p>
+                </div>}
         </>
     )
 }

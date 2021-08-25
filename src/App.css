@@ -11,7 +11,7 @@
   
 }
 .navbar-light > .container > h4{
-    background-color: black;
+    background-color:#F2BB7B;
     font-weight: bold;
     width: 180px;
     padding: 10px 0;
@@ -69,5 +69,6 @@ p{
   .forgot-password a {
     color: #167bff;
   }
-
-
+  .btn-warning {
+    color: #167bff;
+  }
